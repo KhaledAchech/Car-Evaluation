@@ -33,3 +33,26 @@ y = list(cls)
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size=0.1)
 
 print(x_train, y_test)
+
+"""
+Defining the model in this case am using KNN with 9(you can play arround with the number to get a better accuracy) 
+wich is the number of neighbors to check.
+note that n_neighbors always should be an odd number
+"""
+model = KNeighborsClassifier(n_neighbors = 9)
+
+#training
+model.fit(x_train, y_train)
+
+#finding the accuracy
+acc = model.score(x_test, y_test)
+print(acc)
+
+predicted = model.predict(x_test)
+#this is to make it more presentable becuase all of the attributes have numeric values
+names = ["unacc", "acc", "good", "vgood"]
+
+for x in range(len(predicted)):
+    print("predicted : ", names[predicted[x]], "data : ", x_test[x], "Actual : ", names[y_test[x]])
+
+
